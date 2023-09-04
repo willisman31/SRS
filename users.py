@@ -55,3 +55,9 @@ class User:
         response = requests.get(self.get_user_url())
         return response.text
 
+    # take id of last content posting from jsonfile- this will be applied to the "after" tag in get header
+    def get_last_content_id(self, file):
+        temp = json.loads(file)
+        dist = int(temp['data']['dist'])
+        return temp['data']['children'][(dist - 1)]['data']['id']
+        
